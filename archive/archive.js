@@ -1,4 +1,4 @@
-// Create object for arrays of file names by each year
+// archive.js file, Create object for arrays of file names by each year
 
 const imageData = {
     "2019": [
