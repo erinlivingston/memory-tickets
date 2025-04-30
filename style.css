@@ -34,19 +34,13 @@ nav a:visited {
     color: rgb(15, 154, 119) ;
 }
 
-.page-content {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 1rem; 
-}
+/* archive page, image grid formatting */
 
 .image-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr); /* 5 columns */
     column-gap: 3rem;/* horizontal space between columns */
     row-gap: 3rem; /* vertical space between columns */
-    justify-items: center;
-    padding: 1rem;
     max-width: 1100px;
     margin: 0 auto 1rem auto;
 }
@@ -71,7 +65,7 @@ nav a:visited {
 }
 
 #archive-preview {
-    width: 250px;   /* or any size you prefer */
+    width: 250px;   
     display: block;
     margin-right: auto;
     margin-left: auto;
@@ -99,24 +93,13 @@ nav a:visited {
 
 }
 
-#testImage, #testCanvas {
-    width: 300px; 
-    display: block;
-    margin: 0 auto;
-    padding: 1rem;
-
-}
-
-
-
-
 /*Styling for the color grid page, groups of colors and grid formatting
 /* Container for all color triplets, parent container is .swatch-container */
 .swatch-container {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     column-gap: 3rem;
-    row-gap: 4rem; 
+    row-gap: 5rem; 
     justify-content: center; /* Center the grid */
     padding: 3rem 2rem;
     max-width: 1000px;
