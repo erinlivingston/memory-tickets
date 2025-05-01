@@ -1,5 +1,5 @@
 //script for thumbnail that will cycle through all tickets quickly, for main page
-import { allTicketPaths } from './imageData.js';
+import { allTicketPaths } from '../imageData.js';
 
 const ticketCycle = document.getElementById("archive-preview");
 let index = 0;

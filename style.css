@@ -53,6 +53,32 @@ nav a:visited {
 
 }
 
+.archive-intro {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    margin: 2rem auto; 
+    padding: 1.5rem;
+    background-color: black;
+    color: white;
+    max-width: 800px;
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.3); 
+}
+
+.archive-intro p {
+    flex: 1; 
+    color: white;
+    max-width: 500px; /* Optional: limit width of text block */
+    line-height: 1.6;
+}
+
+.archive-intro img {
+    width: 200px; /* Adjust size of preview image as needed */
+    height: auto;
+    border-radius: 8px;
+}
+
 
 .art-preview img {
     max-width: 500px;

@@ -98,6 +98,8 @@ swatchArea.appendChild(yearSection);
 
             const colorTriplets = extractColors(ctx, year, imageSrc);
             drawColorSwatches(colorTriplets, swatchContainer)
+            // store color swatches for later toggle button on archive page 
+            img.dataset.colors = JSON.stringify(colorTriplets);
         };
     });
 });
@@ -212,10 +214,64 @@ function drawColorSwatches(colorTriplets, container) {
 
 
 
+/*  Archived EXPORT script, for color extraction to a JSON file
 
+const pathsForExport = Object.values(imagePathsByYear).flat();
 
+const colorTripletMap = {}; // Will hold all extracted color triplets
+const promise = [];
+const exportCanvas = document.createElement('canvas');
+const exportCtx = exportCanvas.getContext('2d', { willReadFrequently: true });
 
-/* FUNCTION TO FIND PICTURE AREA FOR EXTRACTION, archived
+const promises = pathsForExport.map(imageSrc => {
+    return new Promise(resolve => {
+      const img = new Image();
+      img.crossOrigin = 'Anonymous'; 
+      img.src = imageSrc;
+  
+      img.onload = () => {
+        exportCanvas.width = img.naturalWidth;
+        exportCanvas.height = img.naturalHeight;
+        exportCtx.drawImage(img, 0, 0);
+  
+        // === Derive year from image path ===
+        const yearMatch = imageSrc.match(/\/(\d{4})-Tickets\//);
+        const year = yearMatch ? yearMatch[1] : null;
+  
+        if (!year) {
+          console.warn(`Could not extract year from path: ${imageSrc}`);
+          resolve();
+          return;
+        }
+  
+        // === Use existing extractColors function ===
+        const triplet = extractColors(exportCtx, year, imageSrc);
+        colorTripletMap[imageSrc] = triplet;
+        resolve();
+      };
+  
+      img.onerror = () => {
+        console.error(`Failed to load image: ${imageSrc}`);
+        resolve(); // Don't block the export
+      };
+    });
+  });
+  
+  Promise.all(promises).then(() => {
+    const json = JSON.stringify(colorTripletMap, null, 2);
+    const blob = new Blob([json], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+  
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'colorTriplets.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  
+    console.log("✅ colorTriplets.json downloaded.");
+  }); */
+/* Archived Function to find photo area for color extractions
 function visualizeColorBar(ctx) {
     const colorBarHeight = 30;
     const colorBarWidth = 650;

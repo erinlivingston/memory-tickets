@@ -210,3 +210,54 @@ Object.entries(imageData).forEach(([year, files]) => {
     });
 });
 
+
+//adding create color function here for toggle button
+
+function createColorSwatches(colorTriplets) {
+    const groupContainer = document.createElement('div');
+    groupContainer.classList.add('group-container');
+    groupContainer.style.gap = '1px';
+
+    colorTriplets.forEach(color => {
+        const swatch = document.createElement('div');
+        swatch.classList.add('swatch');
+        swatch.style.backgroundColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
+        groupContainer.appendChild(swatch);
+    });
+
+    return groupContainer;
+}
+
+
+
+
+// toggle button 
+let showingSwatches = false;
+
+document.getElementById('colortoggleView').addEventListener('click', () => {
+    const allGroups = document.querySelectorAll('.group-container');
+
+    allGroups.forEach(group => {
+        const parent = group.parentElement;
+
+        if (!showingSwatches) {
+            // Replace image with stored swatches
+            const image = parent.querySelector('img');
+            if (image && image.dataset.colors) {
+                const colors = JSON.parse(image.dataset.colors);
+                const swatchDiv = createColorSwatches(colors);
+                image.style.display = 'none';
+                parent.appendChild(swatchDiv);
+            }
+        } else {
+            // Switch back to image
+            const image = parent.querySelector('img');
+            const swatch = parent.querySelector('.group-container');
+            if (swatch) swatch.remove();
+            if (image) image.style.display = 'block';
+        }
+    });
+
+    showingSwatches = !showingSwatches;
+    document.getElementById('colortoggleView').textContent = showingSwatches ? 'Show Ticket Images' : 'Show Color Swatches';
+});
