@@ -34,6 +34,25 @@ nav a:visited {
     color: rgb(15, 154, 119) ;
 }
 
+button {
+    font-family: 'JetBrains Mono', monospace;
+}
+
+#enterButton {
+    padding: 0.5rem .5rem !important;        /* smaller size */
+    background-color: #925adae3 !important;    /* change as needed */
+    color: white ;
+    border: none;
+    border-radius: 4px;           /* curved edges */
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#enterButton:hover {
+    background-color: #5d156b !important;    /* darker on hover */
+  }
+
 /* archive page, image grid formatting */
 
 .image-grid {
@@ -146,3 +165,76 @@ nav a:visited {
     height: 70px;
     border: 0px solid #000;
 }
+
+/* Styling for entrance train doors */
+.train-door-container {
+    position: relative;
+    width: 400px;
+    height: 375px;
+    margin: 100px auto;
+  }
+  
+  .door {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background: #857c7c;
+    transition: transform 1.5s ease-in-out;
+    z-index: 2;
+    border-radius: 4px;
+  }
+  
+  .left-door {
+    left: 0;
+  }
+  
+  .right-door {
+    right: 0;
+  }
+  
+  .slide-left {
+    transform: translateX(-50%);
+  }
+  
+  .slide-right {
+    transform: translateX(50%);
+  }
+  
+  #enterButton {
+    display: block;
+    margin: 40px auto 0 auto;
+    padding: 1em 2em;
+    font-size: 1rem;
+    background: #fff;
+    border: none;
+    cursor: pointer;
+    z-index: 3;
+  }
+
+  .ticket-form-container {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+
+  }
+
+  .form-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  #ticketForm {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 550px;
+    max-width: 90%;
+    align-items: center;
+
+  }

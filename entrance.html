@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Train Ticket Microarchive Entrance</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="train-door-container">
+    <div class="door left-door"></div>
+    <div class="door right-door"></div>
+  </div>
+
+  <button id="enterButton">Enter Train Ticket Microarchive</button>
+
+  <script>
+    document.getElementById("enterButton").addEventListener("click", () => {
+      document.querySelector(".left-door").classList.add("slide-left");
+      document.querySelector(".right-door").classList.add("slide-right");
+
+      // Wait for animation before redirecting
+      setTimeout(() => {
+        window.location.href = "selection.html";
+      }, 1800);
+    });
+  </script>
+</body>
+</html>

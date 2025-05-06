@@ -105,7 +105,7 @@ swatchArea.appendChild(yearSection);
 });
 // FUNCTION TO EXTRACT COLORS from each ticket's color bar
 
-// Trying dynamic color bar extraction based on year as location on interface changes!
+// dynamic color extraction based on year, interface changes!
 const barStartYOffsetByYear = {
     "2019": -335, 
     "2020": -335, 
@@ -153,7 +153,6 @@ const barStartYOffsetOverrides = {
 };
 
 function extractColors(ctx, year, imageSrc) {
-
     const yearHeights = {
         "2019": 30, 
         "2020": 30, 
@@ -213,64 +212,94 @@ function drawColorSwatches(colorTriplets, container) {
 }
 
 
+// EXPORT script for color extraction to a JSON file, place below here
+function normalizeImagePath(src) {
+    const match = src.match(/\/assets\/\d{4}-Tickets\/[^/]+\.PNG$/i);
+    return match ? match[0] : src;
+  }
 
-/*  Archived EXPORT script, for color extraction to a JSON file
 
-const pathsForExport = Object.values(imagePathsByYear).flat();
-
-const colorTripletMap = {}; // Will hold all extracted color triplets
-const promise = [];
-const exportCanvas = document.createElement('canvas');
-const exportCtx = exportCanvas.getContext('2d', { willReadFrequently: true });
-
-const promises = pathsForExport.map(imageSrc => {
-    return new Promise(resolve => {
-      const img = new Image();
-      img.crossOrigin = 'Anonymous'; 
-      img.src = imageSrc;
-  
-      img.onload = () => {
-        exportCanvas.width = img.naturalWidth;
-        exportCanvas.height = img.naturalHeight;
-        exportCtx.drawImage(img, 0, 0);
-  
-        // === Derive year from image path ===
-        const yearMatch = imageSrc.match(/\/(\d{4})-Tickets\//);
-        const year = yearMatch ? yearMatch[1] : null;
-  
-        if (!year) {
-          console.warn(`Could not extract year from path: ${imageSrc}`);
-          resolve();
-          return;
-        }
-  
-        // === Use existing extractColors function ===
-        const triplet = extractColors(exportCtx, year, imageSrc);
-        colorTripletMap[imageSrc] = triplet;
-        resolve();
-      };
-  
-      img.onerror = () => {
-        console.error(`Failed to load image: ${imageSrc}`);
-        resolve(); // Don't block the export
-      };
-    });
-  });
-  
-  Promise.all(promises).then(() => {
-    const json = JSON.stringify(colorTripletMap, null, 2);
-    const blob = new Blob([json], { type: 'application/json' });
+function downloadJSON(data, filename) {
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
     const url = URL.createObjectURL(blob);
-  
-    const a = document.createElement('a');
+    const a = document.createElement("a");
     a.href = url;
-    a.download = 'colorTriplets.json';
-    document.body.appendChild(a);
+    a.download = filename;
     a.click();
-    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
   
-    console.log("✅ colorTriplets.json downloaded.");
-  }); */
+  // Existing processing logic for color extraction
+  async function exportColorsAsJSON(imagePaths) {
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d", { willReadFrequently: true });
+    const results = [];
+  
+    for (let path of imagePaths) {
+      const img = new Image();
+      img.crossOrigin = "anonymous"; // Only works if served with correct headers
+      img.src = path;
+  
+      await new Promise((resolve) => {
+        img.onload = () => {
+          canvas.width = img.naturalWidth;
+          canvas.height = img.naturalHeight;
+          ctx.drawImage(img, 0, 0);
+  
+          const canvasWidth = canvas.width;
+          const canvasHeight = canvas.height;
+  
+          const yearMatch = path.match(/\/(\d{4})-/);
+          const year = yearMatch ? yearMatch[1] : "unknown";
+          const normalizedPath = normalizeImagePath(path);
+  
+          const colorBarHeight = {
+            "2019": 30,
+            "2020": 30,
+            "2021": 10,
+            "2022": 10,
+            "2023": 10,
+            "2024": 10,
+          }[year] || 20;
+  
+          const barWidth = 650;
+          const barX = (canvasWidth / 2) - (barWidth / 2);
+          const offsetY = barStartYOffsetOverrides[path] ?? barStartYOffsetByYear[year] ?? -355;
+          const barY = (canvasHeight / 2) + offsetY;
+  
+          const colors = [];
+  
+          for (let i = 0; i < 3; i++) {
+            const sectionWidth = barWidth / 3;
+            const x = barX + (i * sectionWidth) + (sectionWidth / 2);
+            const y = barY + (colorBarHeight / 2);
+  
+            const pixel = ctx.getImageData(x, y, 1, 1).data;
+            const color = [pixel[0], pixel[1], pixel[2]];
+            colors.push(color); // RGB array like in your main function
+          }
+  
+          results.push({ path, year, colors });
+          resolve();
+        };
+  
+        img.onerror = () => {
+          console.warn("Failed to load image:", path);
+          resolve();
+        };
+      });
+    }
+  
+    downloadJSON(results, "ticket-colors.json");
+  }
+  
+  // Hook up button click
+  document.getElementById("exportButton")?.addEventListener("click", () => {
+    const allPaths = Object.values(imagePathsByYear).flat(); // assumes you use imagePathsByYear
+    exportColorsAsJSON(allPaths);
+  });
+
+
 /* Archived Function to find photo area for color extractions
 function visualizeColorBar(ctx) {
     const colorBarHeight = 30;

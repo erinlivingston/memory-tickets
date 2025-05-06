@@ -188,6 +188,96 @@ const imageData = {
 
 };
 
+// Load colorTriplets first, then render images once
+fetch('/ticket-colors.json')
+    .then(res => res.json())
+    .then(rawTriplets => {
+        // Convert array of color triplets to a lookup object
+        const colorTriplets = {};
+        rawTriplets.forEach(entry => {
+            colorTriplets[entry.path] = entry.colors;  // entry.path is the image path, entry.colors is the color data
+        });
+
+        // Then proceed with rendering the images as before
+        Object.entries(imageData).forEach(([year, files]) => {
+            const container = document.getElementById(`grid-${year}`);
+
+            files.forEach(file => {
+                const img = document.createElement("img");
+                img.src = `../assets/${year}-Tickets/${file}`;
+                img.alt = file;
+
+                // Attach color data if available
+                const relativePath = `/assets/${year}-Tickets/${file}`;
+                if (colorTriplets[relativePath]) {
+                    img.dataset.colors = JSON.stringify(colorTriplets[relativePath]);
+                }
+
+                container.appendChild(img);
+            });
+        });
+    })
+    .catch(err => {
+        console.error("Error loading ticket-colors.json:", err);
+    });
+
+// Swatch creation function
+function createColorSwatches(colorTriplets) {
+    const groupContainer = document.createElement('div');
+    groupContainer.classList.add('group-container');
+    groupContainer.style.display = 'flex';
+    groupContainer.style.gap = '2px';
+
+    colorTriplets.forEach(color => {
+        const swatch = document.createElement('div');
+        swatch.classList.add('swatch');
+        swatch.style.width = '50px';
+        swatch.style.height = '50px';
+        swatch.style.backgroundColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
+        groupContainer.appendChild(swatch);
+    });
+
+    return groupContainer;
+}
+
+// Toggle view
+let showingSwatches = false;
+
+document.getElementById('colortoggleView').addEventListener('click', () => {
+    document.querySelectorAll('.image-grid').forEach(grid => {
+        Array.from(grid.children).forEach(child => {
+            if (child.tagName === 'IMG') {
+                const img = child;
+                const parent = img.parentElement;
+
+                if (!showingSwatches) {
+                    const colors = img.dataset.colors ? JSON.parse(img.dataset.colors) : null;
+                    if (colors) {
+                        img.style.display = 'none';
+                        const swatchDiv = createColorSwatches(colors);
+                        parent.appendChild(swatchDiv);
+                    }
+                } else {
+                    img.style.display = 'block';
+                    const swatch = parent.querySelector('.group-container');
+                    if (swatch) swatch.remove();
+                }
+            }
+        });
+    });
+
+    showingSwatches = !showingSwatches;
+    document.getElementById('colortoggleView').textContent = showingSwatches
+        ? 'Show Ticket Images'
+        : 'Show Color Swatches';
+});
+
+
+
+
+
+
+/* version before
 //Open each file for each year, look at the ticket images inside
 Object.entries(imageData).forEach(([year, files]) => {
 
@@ -210,17 +300,45 @@ Object.entries(imageData).forEach(([year, files]) => {
     });
 });
 
+//Loading the colorTriplet json and trying to edit it into the toggle button 
 
-//adding create color function here for toggle button
+fetch('/colorTriplets.json')
+    .then(res => res.json())
+    .then(colorTriplets => {
+        Object.entries(imageData).forEach(([year, files]) => {
+            const container = document.getElementById(`grid-${year}`);
 
+            files.forEach(file => {
+                const img = document.createElement("img");
+                img.src = `../assets/${year}-Tickets/${file}`;
+                img.alt = file;
+
+                // Attach color data if available
+                const relativePath = `/assets/${year}-Tickets/${file}`;
+                if (colorTriplets[relativePath]) {
+                    img.dataset.colors = JSON.stringify(colorTriplets[relativePath]);
+                }
+
+                container.appendChild(img);
+            });
+        });
+    })
+    .catch(err => {
+        console.error("Error loading colorTriplets.json:", err);
+    });
+
+
+// Swatch creation function
 function createColorSwatches(colorTriplets) {
     const groupContainer = document.createElement('div');
     groupContainer.classList.add('group-container');
-    groupContainer.style.gap = '1px';
+    groupContainer.style.display = 'flex';
 
     colorTriplets.forEach(color => {
         const swatch = document.createElement('div');
         swatch.classList.add('swatch');
+        swatch.style.width = '20px';
+        swatch.style.height = '20px';
         swatch.style.backgroundColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
         groupContainer.appendChild(swatch);
     });
@@ -229,35 +347,37 @@ function createColorSwatches(colorTriplets) {
 }
 
 
-
-
-// toggle button 
+// Toggle view
 let showingSwatches = false;
 
 document.getElementById('colortoggleView').addEventListener('click', () => {
-    const allGroups = document.querySelectorAll('.group-container');
+    document.querySelectorAll('.image-grid img').forEach(img => {
+        const parent = img.parentElement;
 
-    allGroups.forEach(group => {
-        const parent = group.parentElement;
+        // Remove any existing swatch divs
+        const existingSwatch = parent.querySelector('.group-container');
+        if (existingSwatch) {
+            existingSwatch.remove();
+        }
 
         if (!showingSwatches) {
-            // Replace image with stored swatches
-            const image = parent.querySelector('img');
-            if (image && image.dataset.colors) {
-                const colors = JSON.parse(image.dataset.colors);
+            // Hide image and insert swatch group if available
+            const colors = img.dataset.colors ? JSON.parse(img.dataset.colors) : null;
+            if (colors) {
                 const swatchDiv = createColorSwatches(colors);
-                image.style.display = 'none';
+                img.style.display = 'none';
                 parent.appendChild(swatchDiv);
             }
         } else {
-            // Switch back to image
-            const image = parent.querySelector('img');
-            const swatch = parent.querySelector('.group-container');
-            if (swatch) swatch.remove();
-            if (image) image.style.display = 'block';
+            // Show image
+            img.style.display = 'block';
         }
     });
 
     showingSwatches = !showingSwatches;
-    document.getElementById('colortoggleView').textContent = showingSwatches ? 'Show Ticket Images' : 'Show Color Swatches';
+    document.getElementById('colortoggleView').textContent = showingSwatches
+        ? 'Show Ticket Images'
+        : 'Show Color Swatches';
 });
+
+version before end line */
