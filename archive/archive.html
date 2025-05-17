@@ -10,27 +10,47 @@
 <body>
 
     <nav>
-        <a href="/index.html">About</a>
-        <a href="/now-ticket.html">Activate Ticket</a>
-        <a href="/archive/archive.html">Microarchive</a>
-        <a href="/colorGrid.html">Colors as Data</a>
+        <a href="../entrance.html">Enter</a>
+        <a href="../selection.html">Select</a>
+        <a href="../now-ticket.html">Ticket</a>
+        <a href="../index.html">About</a>
+        <a href="../archive/archive.html">Microarchive</a>
+        <a href="../colorGrid.html">Color</a>
     </nav>
 
     <h1>Digital Train Tickets Microarchive</h1>
-
-
         <div class = "archive-intro">
+        <div id="preview-container" style="position: relative; display: inline-block;">
+            <img id="archive-preview" src="" alt="Ticket preview" />
+            <div id="play-pause-icon" style="
+                    position: absolute;
+                    bottom: 8px;
+                    right: 8px;
+                    width: 24px;
+                    height: 24px;
+                    background-color: rgba(0, 0, 0, 0.6);
+                    color: white;
+                    font-size: 16px;
+                    line-height: 24px;
+                    text-align: center;
+                    border-radius: 50%;
+                    cursor: pointer;
+                    user-select: none;
+                ">❚❚</div>
+        </div>
 
-        <img id="archive-preview" alt="Slideshow of all train tickets" />
+        <div id="archivetextandbutton">
+            <p> The complete collection of screenshotted tickets from travel into the city years 2019 - 2024, screenshots were
+                taken when color combinations were interesting ... Erin add more text here </p>
 
-        <p> The complete collection of screenshotted tickets from travel into the city years 2019 - 2024, screenshots were
-            taken when color combinations were interesting ... Erin add more text here
-        </p>
+            <div id="toggleButton"> 
+                <button id="colortoggleView"> Toggle to Color </button>
+            </div>
+       
+        </div>
+
         </div>
     
-        <script type = "module" src = "ticketcyclePreview-archive.js"></script>
-
-        <button id="colortoggleView"> Toggle to Color </button>
 
         <main> 
 
@@ -67,6 +87,7 @@
         </main>
         
         <script src="archive.js"></script>
+        <script type = "module" src = "ticketcyclePreview-archive.js"></script>
 
 </body>
 

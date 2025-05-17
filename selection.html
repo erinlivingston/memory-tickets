@@ -10,17 +10,23 @@
 
 
 <body>
-    <nav>
-        <a href="entrance.html">Enter</a>
-    </nav>
+  <nav>
+    <a href="entrance.html">Enter</a>
+    <a href="selection.html">Select</a>
+    <a href="now-ticket.html">Ticket</a>
+    <a href="index.html">About</a>
+    <a href="archive/archive.html">Microarchive</a>
+    <a href="colorGrid.html">Color</a>
+</nav>
 
   <div class="ticket-form-container">
         <form id="ticketForm">
             
             <div class="form-header">
-                <h2>Select Your Ticket</h2>
-                <div id="clock">--/--/----  --:--:-- </div>
+            <h2>Select Your Ticket</h2>
             </div>
+
+            <div id="clock">--/--/---- --:--:-- </div>
 
         <!-- Q1 where--> 
         <label> Where Are you going? </label>
@@ -36,7 +42,7 @@
         </div>
 
 
-        <!-- PLACEHOLDER: Another input, dropdown, or toggle -->
+        <!-- Dropdown input, Q2 zone -->
         <label for="zoneSelect">Choose a Zone</label>
         <select id="zoneSelect" name="zone" required>
             <option value="1">1</option> 
@@ -51,6 +57,8 @@
             <option value="10">10</option>
 
         </select>
+
+        <!-- Q3 INPUT, color selection?-->
 
         <button type="submit">Activate</button>
         </form>

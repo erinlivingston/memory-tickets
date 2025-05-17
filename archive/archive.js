@@ -269,7 +269,7 @@ document.getElementById('colortoggleView').addEventListener('click', () => {
     showingSwatches = !showingSwatches;
     document.getElementById('colortoggleView').textContent = showingSwatches
         ? 'Show Ticket Images'
-        : 'Show Color Swatches';
+        : 'Toggle to Color';
 });
 
 

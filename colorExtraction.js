@@ -211,7 +211,7 @@ function drawColorSwatches(colorTriplets, container) {
     container.appendChild(groupContainer);
 }
 
-
+/* Archiving export script
 // EXPORT script for color extraction to a JSON file, place below here
 function normalizeImagePath(src) {
     const match = src.match(/\/assets\/\d{4}-Tickets\/[^/]+\.PNG$/i);
@@ -297,8 +297,8 @@ function downloadJSON(data, filename) {
   document.getElementById("exportButton")?.addEventListener("click", () => {
     const allPaths = Object.values(imagePathsByYear).flat(); // assumes you use imagePathsByYear
     exportColorsAsJSON(allPaths);
-  });
-
+  }); 
+  */
 
 /* Archived Function to find photo area for color extractions
 function visualizeColorBar(ctx) {

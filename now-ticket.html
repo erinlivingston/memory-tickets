@@ -10,25 +10,30 @@
 
 </head>
 
-<nav>
-    <a href="entrance.html">Enter</a>
-    <a href="index.html">About</a>
-    <a href="now-ticket.html">Activate Ticket</a>
-    <a href="archive/archive.html">Microarchive</a>
-    <a href="colorGrid.html">Colors as Data</a>
-</nav>
-
-
 
 
 <body>
+
+    <nav>
+        <a href="entrance.html">Enter</a>
+        <a href="selection.html">Select</a>
+        <a href="now-ticket.html">Ticket</a>
+        <a href="index.html">About</a>
+        <a href="archive/archive.html">Microarchive</a>
+        <a href="colorGrid.html">Color</a>
+    </nav>
+
 <!-- Perler Ticket Base Image-->
-    <div class = "tilePerlerticket">
-        <img id = "tilePerlerticket" src = "assets/art/tilePerlerticket.png" alt="Perler bead tile layer">
-    </div> 
-    <script src="sketch.js"></script>
+<div id="tile-container">
+    <img src="assets/art/perlerTile-v2-edited.png" alt="Perler bead tile layer" id="tile-bg">
+    
+    <div id="qr-code-container"></div>
+</div>
+
+<script src="sketch.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+<script src="dotqr-code.js"></script>
 
 </body>
-
 
 </html>
