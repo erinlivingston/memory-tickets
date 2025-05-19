@@ -7,107 +7,78 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 
-<nav>
-  <a href="entrance.html">Enter</a>
-  <a href="selection.html">Select</a>
-  <a href="now-ticket.html">Ticket</a>
-  <a href="index.html">About</a>
-  <a href="archive/archive.html">Microarchive</a>
-  <a href="colorGrid.html">Color</a>
-</nav>
-
 <body>
+
+  <nav>
+    <a href="entrance.html">Enter</a>
+    <a href="selection.html">Select</a>
+    <a href="now-ticket.html">Ticket</a>
+    <a href="index.html">About</a>
+    <a href="archive/archive.html">Microarchive</a>
+    <a href="colorGrid.html">Color</a>
+  </nav>
   
   <div class="train-door-container">
-
     <div class="door left-door"></div>
     <div class="door right-door"></div>
   </div>
 
   <div id="introContainer">
-  <div id="entranceIntrotext"> <p>Tickets are scraps and receipts 
-    of our movement & time, and our transactions & consumption. Tickets were once a material piece
-    of travel memory. Now, they are part of digital fabrics that form global infrastructures
-    & interfaces. This project plays with the digital fabric of a commuter rail, and explores its ticketing 
-    interface. Enter the train and consider embodied digital travel memory. 
+  <div id="entranceIntrotext"> <p>Tickets are scraps
+    of our movement & time, and our transactions & consumption. Once a material piece
+    of travel memory, now, part of digital fabrics that form global infrastructures
+    & interfaces. This project plays with digital ticketing from commuter rail and explores a collection of 
+    ticket screenshots as mnemonic objects. Enter the train to subvert color and time,
+    and to consider an embodied digital travel memory. 
   </p>     </div>
+  <button id="enterButton">Enter Train Ticket Microarchive</button>
 </div>
 
-<button id="enterButton">Enter Train Ticket Microarchive</button>
-
-  <!-- Hidden selection form appears after doors slide open -->
+  <!--time paragraph appears after doors slide open -->
+  <div id="timeIntro" class="hidden"> 
+    
+  <div id="clock">--/--/---- --:--:-- </div>
+  
+    <div id="timeFormtext"><p> Trains have a form of time all their own. In physics, trains are a crucial example of Relative 
+        Time, a part of Einstein's theory of relativity. It means, simply put, that time
+        depends on our movement in & through space.
+      </p></div>
+  
+    <button id="arrowButton"> ⇨ </button>
+  
+  </div>
+  
   <div id="ticketSelection" class="hidden">
+    
     <form id="ticketForm">
       <div id="clock">--/--/---- --:--:-- </div>
-      <div id="timeFormtext">
-        <p1> Trains have a form of time all their own. In physics, trains are a crucial example of Relative 
-          Time, a part of Einstein's theory of relativity. It means, simply put, that time
-          depends on our movement in & through space.
-
-        </p1>
-      </div>
+      
       <h2>Select Your Ticket</h2>
 
-      <label>Where are you going?</label>
-      <div class="where-group">
-        <label><input type="radio" name="destination" value="somewhere" required> Somewhere</label>
-        <label><input type="radio" name="destination" value="nowhere"> Nowhere</label>
+      <div id="destination-zone-container">
+
+        <label>Where are you going?</label>
+        <div class="where-group">
+          <label><input type="radio" name="destination" value="somewhere" required> Somewhere</label>
+          <label><input type="radio" name="destination" value="nowhere"> Nowhere</label>
+        </div>
+
+        <label for="zoneSelect">Choose Zone</label>
+        <select id="zoneSelect" name="zone" required>
+          <option value="">--</option>
+          <option value="1">1</option> <option value="2">2</option> <option value="3">3</option>
+          <option value="4">4</option> <option value="5">5</option> <option value="6">6</option>
+          <option value="7">7</option> <option value="8">8</option> <option value="9">9</option>
+          <option value="10">10</option>
+        </select>
       </div>
 
-      <label for="zoneSelect">Choose Zone</label>
-      <select id="zoneSelect" name="zone" required>
-        <option value="">--</option>
-        <option value="1">1</option> <option value="2">2</option> <option value="3">3</option>
-        <option value="4">4</option> <option value="5">5</option> <option value="6">6</option>
-        <option value="7">7</option> <option value="8">8</option> <option value="9">9</option>
-        <option value="10">10</option>
-      </select>
-
-      <button type="submit">Activate Ticket</button>
+      <button type="submit"> Activate Ticket</button>
     </form>
+
+
   </div>
 
-  <script>
-  document.getElementById("enterButton").addEventListener("click", function () {
-    const enterBtn = document.getElementById("enterButton");
-    const leftDoor = document.querySelector(".left-door");
-    const rightDoor = document.querySelector(".right-door");
-    const selectionPanel = document.getElementById("ticketSelection");
-    const introText = document.getElementById("entranceIntrotext");
-
-      leftDoor.classList.add("slide-left");
-      rightDoor.classList.add("slide-right");
-
-      //Fade out the intro text and the enter button
-      introText.classList.add("hidden");
-      enterBtn.classList.add("hidden");
-
-      // Show form after door animation
-      setTimeout(() => {
-        selectionPanel.classList.remove("hidden");
-        selectionPanel.classList.add("fade-in");
-        leftDoor.style.display = "none";
-        rightDoor.style.display = "none";
-      }, 1200);
-    }); 
-
-    // Live clock
-    function updateClock() {
-      const now = new Date();
-      document.getElementById("clock").textContent = now.toLocaleString("en-US", {
-        year: "numeric", month: "2-digit", day: "2-digit",
-        hour: "2-digit", minute: "2-digit", second: "2-digit",
-        hour12: false
-      });
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
-
-    // Submit handler
-    document.getElementById("ticketForm").addEventListener("submit", (e) => {
-      e.preventDefault();
-      window.location.href = "now-ticket.html";
-    });
-  </script>
+  <script src="entranceScript.js"></script>
 </body>
 </html>

@@ -7,15 +7,12 @@ body {
 }
 
 p {
-    max-width: 800px;
+    max-width: 700px;
     margin: 0 auto;
     padding: 50px;
     text-align: left;
 }
 
-p1 {
-  font-size: small;
-}
 
 h1 {
     font-size: 2rem;
@@ -32,7 +29,7 @@ nav {
     display: flex;
     gap: 50px; 
     font-size: medium;
-    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.15);
+    text-shadow: 0px 1px 2px rgba(148, 148, 148, 0.15);
     margin-bottom: 2rem;
 
     background-color: #222;
@@ -43,13 +40,35 @@ nav {
     border-bottom-right-radius: 10px;
     margin: 0 auto 20px; /* space for nav bar, top 0, sides auto, bottom 20 px */
 }
+
+nav a {
+    text-decoration: none;
+    font-size: 1rem;
+    border-radius: 4px; /* curved edges */
+    transition: background-color 0.3s ease, color 0.3s ease;}
+
 nav a:visited {
     color: rgb(15, 154, 119) ;
 }
+nav a:hover {
+    color: #83bb00;
+    text-decoration:underline ;
+    text-decoration-style: wavy;
+}
 
+/* About page styling  */
 
-
-
+#intro {
+  text-align: center; /* Center the text inside the container */
+  display: flex; /* Use flexbox for centering */
+  flex-direction: column; /* Stack child elements vertically */
+  justify-content: left; 
+  align-items: center; /* Center content horizontally */
+  width: 100%; /* Ensure it spans the full width of the page */
+  max-width: 600px; /* Optional: Limit the maximum width */
+  margin: 0 auto; /* Center the container horizontally */
+  padding: 2rem; /* Add padding for spacing */
+}
 
 /* Entrance Page styling  */
 
@@ -64,7 +83,7 @@ nav a:visited {
   left: 50%;
   transform: translate(-50%,-50%);
   display: flex;
-
+  flex-direction: column;
 
 }
 
@@ -74,9 +93,9 @@ button {
 
 #enterButton {
     display: block;  
-    margin: 20px auto 0 auto;
+    margin: 20px auto 30px auto;
     padding: 0.5rem .5rem;        /* smaller size */
-    background-color: #116a65e3;    /* change as needed */
+    background-color: #105552e3;    
     color: white ;
     border: none;
     border-radius: 4px;           /* curved edges */
@@ -88,7 +107,7 @@ button {
 }
 
 #enterButton:hover {
-    background-color: #00aebb;    /* darker on hover */
+    background-color: #83bb00;    
   }
 
 /* Train Entrance Doors */
@@ -125,7 +144,7 @@ button {
     position: absolute;
     top: 0;
     width: 350px;
-    height: 600px;
+    height: 550px;
     background: #857c7c;
     transition: transform 1.5s ease-in-out;
     z-index: 5;
@@ -140,11 +159,11 @@ button {
   }
   
   .slide-left {
-    transform: translateX(-70%);
+    transform: translateX(-90%);
   }
   
   .slide-right {
-    transform: translateX(70%);
+    transform: translateX(90%);
   }
   
   .ticket-form-container {
@@ -153,6 +172,7 @@ button {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    z-index: 30;
 
   }
 
@@ -161,7 +181,7 @@ button {
   .fade-in {
     display: block;
     opacity: 0;
-    animation: fadeIn 1s forwards;
+    animation: fadeIn 2s forwards;
   }
   
   @keyframes fadeIn {
@@ -169,10 +189,44 @@ button {
       opacity: 1;
     }
   }
+  #timeIntro {
+    position: absolute;
+    flex-direction: column;
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin: 2rem auto;
+    padding: 2rem;
+  }
+  #arrowButton {
+    position: inline-block;
+    width: 50px;
+    height: 50px;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 1rem;
+    padding: 0.5rem 1rem; /* smaller size */
+    font-size: 2rem;
+    z-index: 30;
+    background-color: #105552e3;    
+    color: white ;
+    border: none;
+    border-radius: 4px;        
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  #arrowButton:hover {
+    background-color: #83bb00;    
+  }
   
   #ticketSelection {
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 5; 
@@ -269,15 +323,14 @@ button {
     gap: 2rem;
     margin: 2rem auto; 
     padding: 1.5rem;
-    background-color: rgb(14, 114, 129);
-    color: white;
-    max-width: 800px;
+    border: 2px solid rgb(14, 114, 129); 
+    color: black;
+    max-width: 600px;
     border-radius: 12px;
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.3); }
 
 .archive-intro p {
     flex: 1; 
-    color: white;
     max-width: 500px; /* Optional: limit width of text block */
     line-height: 1.6;
     font-size: small;}
@@ -305,6 +358,33 @@ button {
     height: auto;
     border-radius: 6px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);}
+
+#toggleButton {
+    position: fixed;
+    display: flex;
+    top: 600px;
+    right: 200px;
+  
+    padding: 1rem 1rem;     
+    color: rgb(19, 77, 178);
+    border: none;
+    border-radius: 4px; /* Curved edges */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+#colortoggleView{
+  position: absolute;
+  font-size: 1.2rem;
+  top: 50%; /* Center vertically */
+  left: 40%; /* Center horizontally */
+  transform: translate(-50%, -50%);
+  white-space: nowrap; /* Prevent text wrapping */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+#colortoggleView:hover {
+  background-color: #83bb00; /* Change color on hover */
+}
 
 /* */
 
