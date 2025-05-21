@@ -7,13 +7,13 @@ canvas.style.display = 'none'; // hide canvas used for the pixel color extractio
 //Direct List of 2019 image file paths 
 const imagePathsByYear = { 
     "2019": [ 
-    "/assets/2019-Tickets/10.23.19.am7.PNG", "/assets/2019-Tickets/10.23.19.pm5.PNG","/assets/2019-Tickets/11.21.19.am7.PNG","/assets/2019-Tickets/11.26.19.am7.PNG",
-        "/assets/2019-Tickets/11.26.19.pm2.PNG","/assets/2019-Tickets/12.03.19.am7.PNG","/assets/2019-Tickets/12.03.19.pm4.PNG","/assets/2019-Tickets/12.04.19.am7.PNG",
-        "/assets/2019-Tickets/12.04.19.pm5.PNG","/assets/2019-Tickets/12.05.19.am7.PNG","/assets/2019-Tickets/12.05.19.pm4.PNG","/assets/2019-Tickets/12.09.19.am7.PNG",
-        "/assets/2019-Tickets/12.09.19.pm5.PNG","/assets/2019-Tickets/12.10.19.am7.PNG","/assets/2019-Tickets/12.10.19.pm5.PNG","/assets/2019-Tickets/12.12.19.am7.PNG",
-        "/assets/2019-Tickets/12.14.19.pm1.PNG","/assets/2019-Tickets/12.14.19.pm5.PNG","/assets/2019-Tickets/12.16.19.am7.PNG","/assets/2019-Tickets/12.16.19.pm5.PNG",
-        "/assets/2019-Tickets/12.19.19.am7.PNG","/assets/2019-Tickets/12.19.19.pm5.PNG","/assets/2019-Tickets/12.20.19.am7.PNG","/assets/2019-Tickets/12.20.19.am11.PNG",
-        "/assets/2019-Tickets/12.30.19.pm1.PNG"],
+    "assets/2019-Tickets/10.23.19.am7.PNG", "assets/2019-Tickets/10.23.19.pm5.PNG","assets/2019-Tickets/11.21.19.am7.PNG","assets/2019-Tickets/11.26.19.am7.PNG",
+        "assets/2019-Tickets/11.26.19.pm2.PNG","assets/2019-Tickets/12.03.19.am7.PNG","assets/2019-Tickets/12.03.19.pm4.PNG","assets/2019-Tickets/12.04.19.am7.PNG",
+        "assets/2019-Tickets/12.04.19.pm5.PNG","assets/2019-Tickets/12.05.19.am7.PNG","assets/2019-Tickets/12.05.19.pm4.PNG","assets/2019-Tickets/12.09.19.am7.PNG",
+        "assets/2019-Tickets/12.09.19.pm5.PNG","assets/2019-Tickets/12.10.19.am7.PNG","assets/2019-Tickets/12.10.19.pm5.PNG","assets/2019-Tickets/12.12.19.am7.PNG",
+        "assets/2019-Tickets/12.14.19.pm1.PNG","assets/2019-Tickets/12.14.19.pm5.PNG","assets/2019-Tickets/12.16.19.am7.PNG","assets/2019-Tickets/12.16.19.pm5.PNG",
+        "assets/2019-Tickets/12.19.19.am7.PNG","assets/2019-Tickets/12.19.19.pm5.PNG","assets/2019-Tickets/12.20.19.am7.PNG","assets/2019-Tickets/12.20.19.am11.PNG",
+        "assets/2019-Tickets/12.30.19.pm1.PNG"],
 //2020 image file paths
     "2020": [
         "/assets/2020-Tickets/01.02.20.am7.PNG","/assets/2020-Tickets/01.02.20.pm5.PNG","/assets/2020-Tickets/01.03.20.am7.PNG","/assets/2020-Tickets/01.03.20.pm4.PNG","/assets/2020-Tickets/01.06.20.am7.PNG",
