@@ -30,4 +30,40 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   setInterval(updateClock, 1000);
   updateClock();
+
+  const planningNotesLink = document.getElementById("planningNotesLink");
+  const planningNotesImage = document.getElementById("planningNotesImage");
+
+  if (planningNotesLink && planningNotesImage) {
+    planningNotesLink.addEventListener("click", () => {
+      // Toggle the visibility of the image
+      if (planningNotesImage.style.display === "none" || planningNotesImage.style.display === "") {
+        planningNotesImage.style.display = "block"; // Show the image
+      } else {
+        planningNotesImage.style.display = "none"; // Hide the image
+      }
+    });
+  }
+
+  const planningNotesModal = document.getElementById("planningNotesModal");
+  const closeButton = document.querySelector(".close-button");
+
+  if (planningNotesLink && planningNotesModal && closeButton) {
+    // Show the modal when the link is clicked
+    planningNotesLink.addEventListener("click", () => {
+      planningNotesModal.style.display = "flex"; // Show the modal
+    });
+
+    // Hide the modal when the close button is clicked
+    closeButton.addEventListener("click", () => {
+      planningNotesModal.style.display = "none"; // Hide the modal
+    });
+
+    // Hide the modal when clicking outside the modal content
+    planningNotesModal.addEventListener("click", (e) => {
+      if (e.target === planningNotesModal) {
+        planningNotesModal.style.display = "none"; // Hide the modal
+      }
+    });
+  }
 });

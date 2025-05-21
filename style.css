@@ -1,3 +1,93 @@
+#prototypeNotice {
+  position: fixed; /* Keep it in the same position on the screen */
+  top: 10px; /* Distance from the top of the page */
+  left: 10px; /* Distance from the left of the page */
+  background-color: rgba(255, 0, 106, 0.8); /* Semi-transparent red background */
+  color: white; /* White text color */
+  font-size: 0.9rem; /* Adjust font size */
+  font-weight: bold; /* Make the text bold */
+  padding: 5px 20px; /* Add some padding around the text */
+  border-radius: 5px; /* Round the corners */
+  z-index: 1000; /* Ensure it appears above other elements */
+  pointer-events: none; /* Prevent it from interfering with clicks */
+}
+
+#ticketselectionnotice {
+  position: fixed; /* Keep it in the same position on the screen */
+  top: 100px; /* Distance from the top of the page */
+  left: 400px; /* Distance from the left of the page */
+  background-color: rgba(255, 0, 106, 0.8); /* Semi-transparent red background */
+  color: white; /* White text color */
+  font-size: 0.9rem; /* Adjust font size */
+  font-weight: bold; /* Make the text bold */
+  padding: 5px 20px; /* Add some padding around the text */
+  border-radius: 5px; /* Round the corners */
+  z-index: 1000; /* Ensure it appears above other elements */
+}
+
+#planningNotesLink {
+  cursor: pointer;
+  text-decoration: underline;
+  color: rgb(0, 179, 255);}
+
+#planningNotesImage {
+  display: none; /* Initially hide the image */
+  margin-top: 10px;
+  max-width: 100%; /* Ensure the image doesn't overflow */
+  border: 1px solid #ccc; /* Add a border for better visibility */
+}
+
+/* Modal container */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 2000; /* Ensure it appears above all other elements */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  background-color: rgba(0, 0, 0, 0.8); /* Black background with transparency */
+  justify-content: center; /* Center the modal content */
+  align-items: center; /* Center the modal content */
+}
+
+/* Modal content */
+.modal-content {
+  position: relative;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 90%;
+  max-height: 90%;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 2001; /* Ensure it appears above the modal background */
+}
+
+/* Image inside the modal */
+.modal-content img {
+  max-width: 100%;
+  max-height: 80vh; /* Ensure the image doesn't overflow the screen */
+  border-radius: 5px;
+}
+
+/* Close button */
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+}
+
+.close-button:hover {
+  color: red;
+}
+
+
+
 body {
     font-family: 'JetBrains Mono', monospace;
     margin: 4px; 

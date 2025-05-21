@@ -18,6 +18,20 @@
     <a href="colorGrid.html">Color</a>
   </nav>
 
+<div id="prototypeNotice">Prototype Site</div>
+<div id="ticketselectionnotice">
+  Selection form still in build, 
+  <span id="planningNotesLink" style="cursor: pointer; text-decoration: underline; color: blue;">click to see planning notes</span>.
+</div>
+
+<!-- Modal for planning notes -->
+<div id="planningNotesModal" class="modal">
+  <div class="modal-content">
+    <span class="close-button">&times;</span>
+    <img id="planningNotesImage" src="assets/planning-notes.jpg" alt="Planning Notes" />
+  </div>
+</div>
+
   <!-- Ticket selection form -->
   <div id="ticketSelection">
     <form id="ticketForm">
@@ -50,6 +64,16 @@
         <option value="9">9</option>
         <option value="10">10</option>
       </select>
+
+      <label for="colorSelect">Choose a Color</label>
+      <div id="colorSelect" class="color-thumbnails">
+        <div class="color-thumbnail" data-color="#FF5733" style="background-color: #FF5733;"></div>
+        <div class="color-thumbnail" data-color="#33FF57" style="background-color: #33FF57;"></div>
+        <div class="color-thumbnail" data-color="#3357FF" style="background-color: #3357FF;"></div>
+        <div class="color-thumbnail" data-color="#F1C40F" style="background-color: #F1C40F;"></div>
+        <div class="color-thumbnail" data-color="#9B59B6" style="background-color: #9B59B6;"></div>
+      </div>
+
 
       <label for="codeName">Code Name:</label>
       <input type="text" id="codeName" name="codeName" maxlength="40" placeholder="Enter your code name" required />

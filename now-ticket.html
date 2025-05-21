@@ -9,7 +9,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
 
 </head>
-
+<div id="prototypeNotice">Prototype Site</div>
+<div id="ticketselectionnotice">
+    Ticket form still in build, 
+    <span id="planningNotesLink" style="cursor: pointer; text-decoration: underline; color: blue;">click to see planning notes</span>.
+  </div>
+  <div id="planningNotesModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <img id="planningNotesImage" src="assets/planning-notes.jpg" alt="Planning Notes" />
+    </div>
+  </div>
 <body>
 
     <nav>
@@ -46,6 +56,42 @@ document.addEventListener("DOMContentLoaded", () => {
   ctx.fillStyle = "black";
   ctx.fillText(`Code Name: ${codeName}`, 50, 50); // Adjust position as needed
 });
+const planningNotesLink = document.getElementById("planningNotesLink");
+  const planningNotesImage = document.getElementById("planningNotesImage");
+
+  if (planningNotesLink && planningNotesImage) {
+    planningNotesLink.addEventListener("click", () => {
+      // Toggle the visibility of the image
+      if (planningNotesImage.style.display === "none" || planningNotesImage.style.display === "") {
+        planningNotesImage.style.display = "block"; // Show the image
+      } else {
+        planningNotesImage.style.display = "none"; // Hide the image
+      }
+    });
+  }
+
+  const planningNotesModal = document.getElementById("planningNotesModal");
+  const closeButton = document.querySelector(".close-button");
+
+  if (planningNotesLink && planningNotesModal && closeButton) {
+    // Show the modal when the link is clicked
+    planningNotesLink.addEventListener("click", () => {
+      planningNotesModal.style.display = "flex"; // Show the modal
+    });
+
+    // Hide the modal when the close button is clicked
+    closeButton.addEventListener("click", () => {
+      planningNotesModal.style.display = "none"; // Hide the modal
+    });
+
+    // Hide the modal when clicking outside the modal content
+    planningNotesModal.addEventListener("click", (e) => {
+      if (e.target === planningNotesModal) {
+        planningNotesModal.style.display = "none"; // Hide the modal
+      }
+    });
+  }
+
 </script>
 
 </body>
