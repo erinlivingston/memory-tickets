@@ -10,8 +10,6 @@
 
 </head>
 
-
-
 <body>
 
     <nav>
@@ -30,9 +28,25 @@
     <div id="qr-code-container"></div>
 </div>
 
+<canvas id="yourCanvasId" width="500" height="500"></canvas>
+
 <script src="sketch.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
 <script src="dotqr-code.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const canvas = document.getElementById("yourCanvasId"); // Replace with your canvas ID
+  const ctx = canvas.getContext("2d");
+
+  // Retrieve the Code Name from localStorage
+  const codeName = localStorage.getItem("codeName") || "No Code Name";
+
+  // Display the Code Name on the canvas
+  ctx.font = "20px Arial";
+  ctx.fillStyle = "black";
+  ctx.fillText(`Code Name: ${codeName}`, 50, 50); // Adjust position as needed
+});
+</script>
 
 </body>
 

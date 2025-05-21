@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 
-
 <body>
   <nav>
     <a href="entrance.html">Enter</a>
@@ -16,82 +15,50 @@
     <a href="now-ticket.html">Ticket</a>
     <a href="index.html">About</a>
     <a href="archive/archive.html">Microarchive</a>
-    <a href="colorGrid.html">Color Data</a>
-</nav>
+    <a href="colorGrid.html">Color</a>
+  </nav>
 
-  <div class="ticket-form-container">
-        <form id="ticketForm">
-            <div id="clock">--/--/---- --:--:-- </div>
-            <div class="form-header">
-            <h2>Select Your Ticket</h2>
+  <!-- Ticket selection form -->
+  <div id="ticketSelection">
+    <form id="ticketForm">
+      <div id="clock">--/--/---- --:--:--</div>
+      <h2 id="selectyourticket"> Select Your Ticket</h2>
 
-        <!-- Q1 where--> 
-        <label> Where Are you going? </label>
-        <div class="where-group">
-            <label>
-                <input type="radio" name="destination" value="somewhere" required />
-                Somewhere
-            </label>
-            <label>
-                <input type="radio" name="destination" value="nowhere" />
-                Nowhere
-            </label>
-        </div>
+      <label>Where are you going?</label>
+      <div class="where-group">
+        <label class="radio-label">
+          <span>Somewhere</span>
+          <input type="radio" name="destination" value="somewhere" required />
+        </label>
+        <label class="radio-label">
+          <span>Nowhere</span>
+          <input type="radio" name="destination" value="nowhere" />
+        </label>
+      </div>
 
+      <label for="zoneSelect">Choose Zone</label>
+      <select id="zoneSelect" name="zone" required>
+        <option value="">--</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+      </select>
 
-        <!-- Dropdown input, Q2 zone -->
-        <label for="zoneSelect">Choose a Zone</label>
-        <select id="zoneSelect" name="zone" required>
-            <option value="1">1</option> 
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
+      <label for="codeName">Code Name:</label>
+      <input type="text" id="codeName" name="codeName" maxlength="40" placeholder="Enter your code name" required />
 
-        </select>
+      <button type="submit">Activate Ticket</button>
+    </form>
+  </div>
 
-        <!-- Q3 INPUT, color selection?-->
-
-        <button type="submit">Activate</button>
-        </form>
-  
-    </div>
-
-
-  <script> 
-
-    // Live Clock
-      function updateClock() {
-      const now = new Date();
-      const formatted = now.toLocaleString("en-US", {
-        year: 'numeric', month: '2-digit', day: '2-digit',
-        hour: '2-digit', minute: '2-digit', second: '2-digit',
-        hour12: false
-      });
-      document.getElementById("clock").textContent = formatted;
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
-
-
-  // ERIN CREATE SEPARATE JS FILE? add script source here.
-    document.getElementById("ticketForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-
-      // PLACEHOLDER: Here’s where you can collect form values
-      const input1 = document.getElementById("input1").value;
-      const input2 = document.getElementById("input2").value;
-
-      // Optional: Save to localStorage/sessionStorage if needed
-      // Then go to the next page
-      window.location.href = "now-ticket.html";
-    });
-  </script>
-
+  <script src="selectionScript.js"></script>
 </body>
+
 </html>

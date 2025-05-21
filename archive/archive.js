@@ -189,7 +189,7 @@ const imageData = {
 };
 
 // Load colorTriplets first, then render images once
-fetch('/ticket-colors.json')
+fetch('../ticket-colors.json')
     .then(res => res.json())
     .then(rawTriplets => {
         // Convert array of color triplets to a lookup object
