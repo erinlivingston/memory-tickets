@@ -198,7 +198,49 @@ nav a:hover {
   align-items: center;
 }
 
+#microarchive-preview-index {
+  max-width: 800px;
+  text-align: center;
+  margin: 0 auto;
+}
 
+#archivepreviewcontaineronindex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#preview-container {
+  display: inline-block;
+  position: relative;
+}
+/* Parent container for centering */
+#archive-intro-container {
+  display: flex; /* Use flexbox for alignment */
+  flex-direction: column; /* Stack elements vertically */
+  align-items: center; /* Center horizontally */
+  justify-content: center; /* Center vertically */
+  margin: 20px auto; /* Add spacing and center the container */
+  width: 100%; /* Ensure it spans the full width */
+  max-width: 900px; /* Optional: Limit the maximum width */
+  padding: 20px; /* Add padding around the content */
+}
+
+/* Center the #archive-intro content */
+#archive-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the content inside */
+  text-align: center; /* Center the text */
+  gap: 1rem; /* Add spacing between child elements */
+  max-width: 800px; /* Optional: Limit the width of the content */
+}
+
+
+
+
+
+/* This is on the specific archive page */
 
 
 /* Entrance Page styling  */
