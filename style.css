@@ -530,11 +530,10 @@ button {
     display: flex;
     align-items: flex-start;
     gap: 2rem;
-    margin: 2rem auto; 
     padding: 1.5rem;
     border: 2px solid rgb(14, 114, 129); 
     color: black;
-    max-width: 600px;
+    max-width: 900px;
     border-radius: 12px;
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.3); }
 
@@ -569,7 +568,7 @@ button {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);}
 
 #archivetext p {
-    font-size: 15px;
+    font-size: 12px;
     margin: 0;
     padding: 0px;
   }
