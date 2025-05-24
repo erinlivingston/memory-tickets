@@ -648,6 +648,10 @@ button {
 
 /*Styling for the color grid page, groups of colors and grid formatting
 /* Container for all color triplets, parent container is .swatch-container */
+
+#colorgridContainer {
+  max-width: 800px; }
+
 .swatch-container {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
